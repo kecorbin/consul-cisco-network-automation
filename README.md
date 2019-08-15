@@ -30,7 +30,7 @@ These are largely managed manually, and are error-prone for two reasons:
 ssh admin@sbx-nxos-mgmt.cisco.com -p 8181
 ```
 
-Credentials are `admin_Admin1234!`
+Credentials are `admin/Admin_1234!`
 
 
 The object groups can be monitored using the `show object-group` command
