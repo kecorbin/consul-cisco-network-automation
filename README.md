@@ -5,6 +5,11 @@ to maintain object group configuration on Nexus 9000 switches.
 
 # Steal Underpants!
 
+Docker Compose gives us a low toil way to launch the demo environment.  The file describes
+a sample environment made up of a consul cluster, and three "web" nodes. Consul can provide
+L7 based routing, simple round robin load balancing, canary deployments, or
+disaster recovery solutions. But for now, let's see what it can do in a "crawl phase"
+
 ```
 docker-compose up
 ```
@@ -18,7 +23,8 @@ You can access the Nexus 9000 we are using by connecting to the following device
 Object groups are commonly used to make managing things like ACL's and QoS policies.  
 These are largely managed manually, and are error-prone for two reasons:
 1. generally managed manually
-2. Garbage in, garbage out!
+2. Garbage in, garbage out! Where's my source of truth? Is it accurate? Is the rate of churn increasing?
+
 
 ```
 ssh admin@sbx-nxos-mgmt.cisco.com -p 8181
@@ -39,4 +45,4 @@ IPv4 address object-group web_servers
 
 # Profit!
 
-Try exploring things like `docker-compose stop web3`
+Try exploring things like `docker-compose stop web3` and observe the object groups reacting.
