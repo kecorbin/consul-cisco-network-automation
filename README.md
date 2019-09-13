@@ -52,8 +52,26 @@ git clone https://github.com/kecorbin/consul-cisco-network-automation
 cd consul-cisco-network-automation
 cd terraform
 terraform init
-terraform plan
-terraform apply --auto-approve
+
+# workspaces represent a group of infrastructure which shares a lifecycle
+terraform workspace new prod
+terraform workspace new stage
+terraform workspace new dev
+
+# dev environment
+terraform workspace select dev
+terraform plan --var environment="dev"
+terraform apply --auto-approve --var environment="dev"
+
+# stage environment
+terraform workspace select stage
+terraform plan --var environment="stage"
+terraform apply --auto-approve --var environment="stage"
+
+# prod environment
+terraform workspace select prod
+terraform plan --var environment="prod"
+terraform apply --auto-approve --var environment="prod"
 
 ```
 
