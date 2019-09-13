@@ -76,6 +76,7 @@ http://localhost:8500/ui/dc1/nodes
 
 This POC leverages the Nexus 9K and ACI Always-On Sandbox provided by Cisco DevNet.  
 
+## Montior Nexus 9000 Object Groups
 You can access the Nexus 9000 we are using by connecting to the following device
 
 ```
@@ -83,10 +84,6 @@ ssh admin@sbx-nxos-mgmt.cisco.com -p 8181
 ```
 
 Credentials are `admin/Admin_1234!`
-
-
-
-
 
 
 The object groups can be monitored using the `show object-group` command
@@ -99,6 +96,12 @@ IPv4 address object-group web_servers
 
 ```
 
+## Monitor ACI Fabric
+
+The always on ACI sandbox is available at: https://sandboxapicdc.cisco.com/
+
+Credentials are `admin/ciscopsdt`
+
 # Profit!
 
-Try exploring things like `docker-compose stop web3` and observe the object groups reacting.
+Try exploring things like `docker-compose stop web3` and observe the object groups and external EPG's reacting.
