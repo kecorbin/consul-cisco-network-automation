@@ -1,0 +1,11 @@
+{
+  "log_level": "DEBUG",
+  "watches": [
+    {
+      "type": "service",
+      "service": "web",
+      "handler_type": "script",
+      "args": ["python", "/updater/update.py"]
+    }
+  ]
+}

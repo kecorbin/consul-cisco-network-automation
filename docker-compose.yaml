@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-
+  # mock nodes for "web" service
   web1: &web
     hostname: web1
     image: consul:latest
@@ -18,6 +18,23 @@ services:
     hostname: web3
     <<: *web
 
+  # syncs N9K object-group `web_servers` with consul service `web`
+  n9k_updater:
+    build: n9k_updater
+    hostname: n9k_updater
+    command: "agent -data-dir /consul/data -retry-join consul3 -client 0.0.0.0 -config-file consul_config.json"
+    networks:
+      - consul-demo
+
+  # syncs ACI external EPG based upon consul service `web`
+  aci_updater:
+    build: aci_updater
+    hostname: aci_updater
+    command: "agent -data-dir /consul/data -retry-join consul3 -client 0.0.0.0 -config-file consul_config.json"
+    networks:
+      - consul-demo
+
+  # consul cluster
   consul1: &consul-server
     hostname: consul1
     image: consul:latest
@@ -39,10 +56,5 @@ services:
       - "8600:8600/udp"
     command: "agent -server -bootstrap-expect 3 -ui -client 0.0.0.0"
 
-  updater:
-    build: updater
-    hostname: updater
-    links:
-      - consul1:consul1
 networks:
   consul-demo:
